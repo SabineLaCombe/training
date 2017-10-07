@@ -1,10 +1,18 @@
 
 public class DrinkOrder {
 
-    public DrinkOrder(String coffee) {
+    private DrinkType drinkType;
+
+    public DrinkOrder(DrinkType drinkType) {
+        this.drinkType = drinkType;
     }
 
     public String createMessageToDrinkMaker() {
-        return "Drink maker makes one coffee";
+        if(this.drinkType.equals(DrinkType.COFFEE)) {
+            return "Drink maker makes one coffee";
+        } else if(this.drinkType.equals(DrinkType.TEA)) {
+            return "Drink maker makes one tea";
+        }
+        return null;
     }
 }
