@@ -1,5 +1,11 @@
 
 public enum DrinkType {
 
-    COFFEE, TEA;
+    COFFEE("coffee"), TEA("tea");
+
+    String drinkLabel;
+
+    DrinkType(String drinkLabel) {
+        this.drinkLabel = drinkLabel;
+    }
 }
