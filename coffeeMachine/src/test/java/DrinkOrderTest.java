@@ -8,6 +8,7 @@ public class DrinkOrderTest {
     public static final String DRINK_MAKER_MAKES_1_TEA = "Drink maker makes 1 tea";
     public static final String DRINK_MAKER_MAKES_1_CHOCOLATE = "Drink maker makes 1 chocolate";
     public static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_1_SUGAR = "Drink maker makes 1 coffee with 1 sugar";
+    public static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR = "Drink maker makes 1 coffee with 2 sugar";
 
     @Test
     public void should_send_one_coffee_order_when_customer_order_coffe() {
@@ -32,5 +33,12 @@ public class DrinkOrderTest {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
         drinkOrder.addSugar(1);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_COFFEE_WITH_1_SUGAR);
+    }
+
+    @Test
+    public void should_send_one_coffee_with_two_sugar_order_to_coffee_maker() throws Exception {
+        DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
+        drinkOrder.addSugar(2);
+        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR);
     }
 }
