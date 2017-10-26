@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.*;
 
 public class DrinkOrderTest {
 
-    public static final String DRINK_MAKER_MAKES_1_COFFEE = "Drink maker makes 1 coffee";
-    public static final String DRINK_MAKER_MAKES_1_TEA = "Drink maker makes 1 tea";
-    public static final String DRINK_MAKER_MAKES_1_CHOCOLATE = "Drink maker makes 1 chocolate";
+    public static final String DRINK_MAKER_MAKES_1_COFFEE = "Drink maker makes 1 coffee with no sugar";
+    public static final String DRINK_MAKER_MAKES_1_TEA = "Drink maker makes 1 tea with no sugar";
+    public static final String DRINK_MAKER_MAKES_1_CHOCOLATE = "Drink maker makes 1 chocolate with no sugar";
     public static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_1_SUGAR = "Drink maker makes 1 coffee with 1 sugar";
     public static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR = "Drink maker makes 1 coffee with 2 sugars";
 

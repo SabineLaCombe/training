@@ -1,27 +1,34 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class DrinkOrder {
 
     private DrinkType drinkType;
     private int numberOfSugar;
 
-    public static final String MESSAGE_TO_DRINK_MAKER_PATTERN = "Drink maker makes 1 ";
+    private static final String MESSAGE_TO_DRINK_MAKER_PATTERN = "Drink maker makes 1 ";
+    private static final String ADD_ONE_SUGAR_TO_TEMPLATE_MESSAGE = " with 1 sugar";
+    private static final String ADD_TWO_SUGARS_TO_MESSAGE_TEMPLATE = " with 2 sugars";
+    private static final String ADD_NO_SUGAR = " with no sugar";
 
-    public DrinkOrder(DrinkType drinkType) {
+    DrinkOrder(DrinkType drinkType) {
         this.drinkType = drinkType;
     }
 
-    public String createMessageToDrinkMaker() {
-        String message = MESSAGE_TO_DRINK_MAKER_PATTERN + drinkType.getDrinkLabel();
-        if(numberOfSugar == 1) {
-            message += " with 1 sugar";
-        } else if(numberOfSugar == 2) {
-            message += " with 2 sugars";
-        }
-        return message;
+    String createMessageToDrinkMaker() {
+        StringBuilder message = new StringBuilder(MESSAGE_TO_DRINK_MAKER_PATTERN + drinkType.getDrinkLabel());
+        message = addSugarOrderToMessage(message);
+        return message.toString();
     }
 
-    public void addSugar(int quantity) {
+    private StringBuilder addSugarOrderToMessage(StringBuilder message) {
+        if(numberOfSugar == 1) {
+            return message.append(ADD_ONE_SUGAR_TO_TEMPLATE_MESSAGE);
+        } else if (numberOfSugar == 2) {
+            return message.append(ADD_TWO_SUGARS_TO_MESSAGE_TEMPLATE);
+        } else {
+            return message.append(ADD_NO_SUGAR);
+        }
+    }
+
+    void addSugar(int quantity) {
         numberOfSugar = quantity;
     }
 }
