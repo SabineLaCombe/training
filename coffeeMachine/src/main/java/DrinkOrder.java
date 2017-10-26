@@ -3,16 +3,13 @@ public class DrinkOrder {
 
     private DrinkType drinkType;
 
+    public static final String MESSAGE_TO_DRINK_MAKER_PATTERN = "Drink maker makes one ";
+
     public DrinkOrder(DrinkType drinkType) {
         this.drinkType = drinkType;
     }
 
     public String createMessageToDrinkMaker() {
-        if(DrinkType.COFFEE.equals(drinkType)) {
-            return "Drink maker makes one "+drinkType.getDrinkLabel();
-        } else if(DrinkType.TEA.equals(this.drinkType)) {
-            return "Drink maker makes one tea";
-        }
-        return null;
+        return MESSAGE_TO_DRINK_MAKER_PATTERN + drinkType.getDrinkLabel();
     }
 }
