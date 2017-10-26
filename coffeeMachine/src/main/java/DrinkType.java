@@ -1,7 +1,7 @@
 
 public enum DrinkType {
 
-    COFFEE("coffee"), TEA("tea");
+    COFFEE("coffee"), TEA("tea"), CHOCOLATE("chocolate");
 
     private String drinkLabel;
 
