@@ -15,7 +15,7 @@ public class DrinkOrderTest {
 
     @Test
     public void should_send_one_tea_order_when_asked_by_customer() {
-        DrinkOrder drinkOrder = new DrinkOrder(DrinkType.TEA );
+        DrinkOrder drinkOrder = new DrinkOrder(DrinkType.TEA);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_ONE_TEA);
     }
 }

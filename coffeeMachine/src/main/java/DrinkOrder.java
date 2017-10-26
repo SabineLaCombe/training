@@ -8,8 +8,8 @@ public class DrinkOrder {
     }
 
     public String createMessageToDrinkMaker() {
-        if(DrinkType.COFFEE.equals(this.drinkType)) {
-            return "Drink maker makes one"+this.drinkType;
+        if(DrinkType.COFFEE.equals(drinkType)) {
+            return "Drink maker makes one "+drinkType.getDrinkLabel();
         } else if(DrinkType.TEA.equals(this.drinkType)) {
             return "Drink maker makes one tea";
         }
