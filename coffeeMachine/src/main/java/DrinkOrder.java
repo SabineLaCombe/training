@@ -4,9 +4,9 @@ public class DrinkOrder {
     private int numberOfSugar;
 
     private static final String MESSAGE_TO_DRINK_MAKER_PATTERN = "Drink maker makes 1 ";
-    private static final String ADD_ONE_SUGAR_TO_TEMPLATE_MESSAGE = " with 1 sugar";
-    private static final String ADD_TWO_SUGARS_TO_MESSAGE_TEMPLATE = " with 2 sugars";
-    private static final String ADD_NO_SUGAR = " with no sugar";
+    private static final String ADD_ONE_SUGAR_AND_A_STICK_TO_TEMPLATE_MESSAGE = " with 1 sugar and a stick";
+    private static final String ADD_TWO_SUGARS_AND_A_STICK_TO_MESSAGE_TEMPLATE = " with 2 sugars and a stick";
+    private static final String ADD_NO_SUGAR_AND_NO_STICK = " with no sugar and therefore no stick";
 
     DrinkOrder(DrinkType drinkType) {
         this.drinkType = drinkType;
@@ -14,17 +14,17 @@ public class DrinkOrder {
 
     String createMessageToDrinkMaker() {
         StringBuilder message = new StringBuilder(MESSAGE_TO_DRINK_MAKER_PATTERN + drinkType.getDrinkLabel());
-        message = addSugarOrderToMessage(message);
+        message = addSugarAndStickOrderToMessage(message);
         return message.toString();
     }
 
-    private StringBuilder addSugarOrderToMessage(StringBuilder message) {
+    private StringBuilder addSugarAndStickOrderToMessage(StringBuilder message) {
         if(numberOfSugar == 1) {
-            return message.append(ADD_ONE_SUGAR_TO_TEMPLATE_MESSAGE);
+            return message.append(ADD_ONE_SUGAR_AND_A_STICK_TO_TEMPLATE_MESSAGE);
         } else if (numberOfSugar == 2) {
-            return message.append(ADD_TWO_SUGARS_TO_MESSAGE_TEMPLATE);
+            return message.append(ADD_TWO_SUGARS_AND_A_STICK_TO_MESSAGE_TEMPLATE);
         } else {
-            return message.append(ADD_NO_SUGAR);
+            return message.append(ADD_NO_SUGAR_AND_NO_STICK);
         }
     }
 

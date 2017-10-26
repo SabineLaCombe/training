@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.*;
 
 public class DrinkOrderTest {
 
-    public static final String DRINK_MAKER_MAKES_1_COFFEE = "Drink maker makes 1 coffee with no sugar";
-    public static final String DRINK_MAKER_MAKES_1_TEA = "Drink maker makes 1 tea with no sugar";
-    public static final String DRINK_MAKER_MAKES_1_CHOCOLATE = "Drink maker makes 1 chocolate with no sugar";
-    public static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_1_SUGAR = "Drink maker makes 1 coffee with 1 sugar";
-    public static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR = "Drink maker makes 1 coffee with 2 sugars";
+    private static final String DRINK_MAKER_MAKES_1_COFFEE = "Drink maker makes 1 coffee with no sugar and therefore no stick";
+    private static final String DRINK_MAKER_MAKES_1_TEA = "Drink maker makes 1 tea with no sugar and therefore no stick";
+    private static final String DRINK_MAKER_MAKES_1_CHOCOLATE = "Drink maker makes 1 chocolate with no sugar and therefore no stick";
+    private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_1_SUGAR = "Drink maker makes 1 coffee with 1 sugar and a stick";
+    private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR = "Drink maker makes 1 coffee with 2 sugars and a stick";
 
     @Test
     public void should_send_one_coffee_order_when_customer_order_coffe() {
