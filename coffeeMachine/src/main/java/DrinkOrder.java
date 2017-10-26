@@ -13,8 +13,10 @@ public class DrinkOrder {
 
     public String createMessageToDrinkMaker() {
         String message = MESSAGE_TO_DRINK_MAKER_PATTERN + drinkType.getDrinkLabel();
-        if(numberOfSugar != 0) {
-            message += " with "+numberOfSugar+" sugar";
+        if(numberOfSugar == 1) {
+            message += " with 1 sugar";
+        } else if(numberOfSugar == 2) {
+            message += " with 2 sugars";
         }
         return message;
     }
