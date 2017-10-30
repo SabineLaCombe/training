@@ -10,22 +10,26 @@ public class DrinkOrderTest {
     private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_1_SUGAR = "Drink maker makes 1 coffee with 1 sugar(s) and a stick";
     private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR = "Drink maker makes 1 coffee with 2 sugar(s) and a stick";
     private static final Object DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR_AND_A_STICK = "Drink maker makes 1 coffee with 2 sugar(s) and a stick";
+    public static final String NOT_ENOUGH_MONEY = "Not enough money";
 
     @Test
     public void should_send_one_coffee_order_when_customer_order_coffe() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
+        drinkOrder.putMoney(0.6);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_COFFEE);
     }
 
     @Test
     public void should_send_one_tea_order_when_customer_order_tea() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.TEA);
+        drinkOrder.putMoney(0.6);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_TEA);
     }
 
     @Test
     public void should_send_one_chocolate_order_when_customer_order_chocolate() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.CHOCOLATE);
+        drinkOrder.putMoney(0.6);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_CHOCOLATE);
     }
 
@@ -33,6 +37,7 @@ public class DrinkOrderTest {
     public void should_send_one_coffee_with_one_sugar_order_to_coffee_maker() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
         drinkOrder.addSugarAndStick(1);
+        drinkOrder.putMoney(0.6);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_COFFEE_WITH_1_SUGAR);
     }
 
@@ -40,6 +45,7 @@ public class DrinkOrderTest {
     public void should_send_one_coffee_with_two_sugar_order_to_coffee_maker() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
         drinkOrder.addSugarAndStick(2);
+        drinkOrder.putMoney(0.6);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR);
     }
 
@@ -47,6 +53,14 @@ public class DrinkOrderTest {
     public void should_send_one_coffee_with_two_sugar_and_one_stick_order_to_coffee_maker() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
         drinkOrder.addSugarAndStick(2);
+        drinkOrder.putMoney(0.6);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR_AND_A_STICK);
+    }
+
+    @Test
+    public void should_not_sent_order_to_drink_maker_when_not_enough_money() {
+        DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
+        drinkOrder.putMoney(0.5);
+        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(NOT_ENOUGH_MONEY);
     }
 }
