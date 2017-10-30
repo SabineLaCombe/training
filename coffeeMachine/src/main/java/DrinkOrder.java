@@ -3,6 +3,7 @@ public class DrinkOrder {
     private DrinkType drinkType;
     private int numberOfSugar;
     private double paymentAmount;
+    private boolean extraHot;
 
     DrinkOrder(DrinkType drinkType) {
         this.drinkType = drinkType;
@@ -12,14 +13,18 @@ public class DrinkOrder {
         if(paymentAmount < drinkType.getDrinkCost()) {
             return MessageTemplate.NOT_ENOUGH_MONEY;
         }
-        return MessageTemplate.createMessageToDrinkMaker(drinkType, numberOfSugar);
+        return MessageTemplate.createMessageToDrinkMaker(drinkType, numberOfSugar, extraHot);
     }
 
     void addSugarAndStick(int quantity) {
-        numberOfSugar = quantity;
+        this.numberOfSugar = quantity;
     }
 
     void putMoney(double amount) {
-        paymentAmount = amount;
+        this.paymentAmount = amount;
+    }
+
+    public void isExtraHot(boolean extraHot) {
+        this.extraHot = extraHot;
     }
 }

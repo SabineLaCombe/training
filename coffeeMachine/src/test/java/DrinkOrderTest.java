@@ -9,8 +9,9 @@ public class DrinkOrderTest {
     private static final String DRINK_MAKER_MAKES_1_CHOCOLATE = "Drink maker makes 1 chocolate with no sugar(s) and therefore no stick";
     private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_1_SUGAR = "Drink maker makes 1 coffee with 1 sugar(s) and a stick";
     private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR = "Drink maker makes 1 coffee with 2 sugar(s) and a stick";
-    private static final Object DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR_AND_A_STICK = "Drink maker makes 1 coffee with 2 sugar(s) and a stick";
-    public static final String NOT_ENOUGH_MONEY = "Not enough money";
+    private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR_AND_A_STICK = "Drink maker makes 1 coffee with 2 sugar(s) and a stick";
+    private static final String NOT_ENOUGH_MONEY = "Not enough money";
+    private static final String DRINK_MAKER_MAKES_1_EXTRA_HOT_COFFEE = "Drink maker makes 1 extra hot coffee with no sugar(s) and therefore no stick";
 
     @Test
     public void should_send_one_coffee_order_when_customer_order_coffee() {
@@ -83,5 +84,13 @@ public class DrinkOrderTest {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.ORANGE_JUICE);
         drinkOrder.putMoney(0.6);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo("Drink maker makes 1 orange juice");
+    }
+
+    @Test
+    public void should_send_one_extra_hot_coffee_when_customer_order_extra_hot_coffee() {
+        DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
+        drinkOrder.putMoney(0.6);
+        drinkOrder.isExtraHot(true);
+        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_EXTRA_HOT_COFFEE);
     }
 }
