@@ -9,8 +9,8 @@ public class DrinkOrder {
     }
 
     String createMessageToDrinkMaker() {
-        if(paymentAmount < 0.6) {
-            return "Not enough money";
+        if(paymentAmount < drinkType.getDrinkCost()) {
+            return MessageTemplate.NOT_ENOUGH_MONEY;
         }
         return MessageTemplate.createMessageToDrinkMaker(drinkType, numberOfSugar);
     }

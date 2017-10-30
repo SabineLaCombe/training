@@ -7,6 +7,8 @@ public class MessageTemplate {
     static final String NO_STICK = "therefore no";
     static final String ONE_STICK = "a";
 
+    static final String NOT_ENOUGH_MONEY = "Not enough money";
+
     static String createMessageToDrinkMaker(DrinkType drinkType, int numberOfSugar) {
         String sugar = numberOfSugar != 0 ? Integer.toString(numberOfSugar) : NO_SUGAR;
         String stick = numberOfSugar != 0 ? ONE_STICK : NO_STICK;

@@ -58,9 +58,23 @@ public class DrinkOrderTest {
     }
 
     @Test
-    public void should_not_sent_order_to_drink_maker_when_not_enough_money() {
+    public void should_not_sent_coffee_order_to_drink_maker_when_not_enough_money() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
         drinkOrder.putMoney(0.5);
+        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(NOT_ENOUGH_MONEY);
+    }
+
+    @Test
+    public void should_not_sent_tea_order_to_drink_maker_when_not_enough_money() {
+        DrinkOrder drinkOrder = new DrinkOrder(DrinkType.TEA);
+        drinkOrder.putMoney(0.3);
+        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(NOT_ENOUGH_MONEY);
+    }
+
+    @Test
+    public void should_not_sent_chocolate_order_to_drink_maker_when_not_enough_money() {
+        DrinkOrder drinkOrder = new DrinkOrder(DrinkType.CHOCOLATE);
+        drinkOrder.putMoney(0.4);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(NOT_ENOUGH_MONEY);
     }
 }
