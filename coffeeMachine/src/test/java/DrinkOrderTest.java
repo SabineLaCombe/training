@@ -13,7 +13,7 @@ public class DrinkOrderTest {
     public static final String NOT_ENOUGH_MONEY = "Not enough money";
 
     @Test
-    public void should_send_one_coffee_order_when_customer_order_coffe() {
+    public void should_send_one_coffee_order_when_customer_order_coffee() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
         drinkOrder.putMoney(0.6);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_COFFEE);
@@ -22,14 +22,14 @@ public class DrinkOrderTest {
     @Test
     public void should_send_one_tea_order_when_customer_order_tea() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.TEA);
-        drinkOrder.putMoney(0.6);
+        drinkOrder.putMoney(0.4);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_TEA);
     }
 
     @Test
     public void should_send_one_chocolate_order_when_customer_order_chocolate() {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.CHOCOLATE);
-        drinkOrder.putMoney(0.6);
+        drinkOrder.putMoney(0.5);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_CHOCOLATE);
     }
 
@@ -76,5 +76,12 @@ public class DrinkOrderTest {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.CHOCOLATE);
         drinkOrder.putMoney(0.4);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(NOT_ENOUGH_MONEY);
+    }
+
+    @Test
+    public void should_send_one_orange_juice_order_when_customer_order_orange_juice() {
+        DrinkOrder drinkOrder = new DrinkOrder(DrinkType.ORANGE_JUICE);
+        drinkOrder.putMoney(0.6);
+        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo("Drink maker makes 1 orange juice");
     }
 }

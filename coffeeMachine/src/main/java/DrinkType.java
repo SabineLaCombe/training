@@ -1,7 +1,7 @@
 
 public enum DrinkType {
 
-    COFFEE("coffee", 0.6), TEA("tea", 0.4), CHOCOLATE("chocolate", 0.5);
+    COFFEE("coffee", 0.6), TEA("tea", 0.4), CHOCOLATE("chocolate", 0.5), ORANGE_JUICE("orange juice", 0.6);
 
     private String drinkLabel;
     private double drinkCost;
@@ -17,5 +17,9 @@ public enum DrinkType {
 
     public double getDrinkCost() {
         return drinkCost;
+    }
+
+    public boolean isHotDrink() {
+        return this.equals(COFFEE) || this.equals(TEA) || this.equals(CHOCOLATE);
     }
 }
