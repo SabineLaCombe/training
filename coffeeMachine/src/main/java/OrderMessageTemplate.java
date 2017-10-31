@@ -1,6 +1,6 @@
 import java.text.MessageFormat;
 
-public class MessageTemplate {
+public class OrderMessageTemplate {
 
     private static final String HOT_DRINK_ORDER_MESSAGE_PATTERN = "Drink maker makes 1 {0} with {1} sugar(s) and {2} stick";
     private static final String COLD_DRINK_ORDER_MESSAGE_PATTERN = "Drink maker makes 1 {0}";

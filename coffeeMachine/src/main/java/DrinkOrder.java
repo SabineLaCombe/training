@@ -2,8 +2,8 @@ public class DrinkOrder {
 
     private DrinkType drinkType;
     private int numberOfSugar;
-    private double paymentAmount;
     private boolean extraHot;
+    private double paymentAmount;
 
     DrinkOrder(DrinkType drinkType) {
         this.drinkType = drinkType;
@@ -11,9 +11,9 @@ public class DrinkOrder {
 
     String createMessageToDrinkMaker() {
         if(paymentAmount < drinkType.getDrinkCost()) {
-            return MessageTemplate.NOT_ENOUGH_MONEY;
+            return OrderMessageTemplate.NOT_ENOUGH_MONEY;
         }
-        return MessageTemplate.createMessageToDrinkMaker(drinkType, numberOfSugar, extraHot);
+        return OrderMessageTemplate.createMessageToDrinkMaker(drinkType, numberOfSugar, extraHot);
     }
 
     void addSugarAndStick(int quantity) {
