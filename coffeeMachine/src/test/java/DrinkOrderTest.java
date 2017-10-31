@@ -96,21 +96,4 @@ public class DrinkOrderTest {
         drinkOrder.isExtraHot(true);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_EXTRA_HOT_COFFEE);
     }
-
-    @Test
-    public void should_report_two_drinks_sold_when_two_drinks_ordered() {
-        DrinkOrder firstDrinkOrder = new DrinkOrder(DrinkType.COFFEE);
-        firstDrinkOrder.putMoney(0.6);
-        DrinkOrder secondDrinkOrder = new DrinkOrder(DrinkType.COFFEE);
-        secondDrinkOrder.putMoney(0.6);
-        List<DrinkOrder> drinkOrders = new ArrayList<DrinkOrder>();
-        drinkOrders.add(firstDrinkOrder);
-        drinkOrders.add(secondDrinkOrder);
-        DrinkReport drinkReport = new DrinkReport();
-        DrinkOrganizer drinkOrganizer = new DrinkOrganizer(drinkOrders, drinkReport);
-
-        drinkOrganizer.sendCommands();
-
-        assertThat(drinkOrganizer.countDrinkSold()).isEqualTo(2);
-    }
 }
