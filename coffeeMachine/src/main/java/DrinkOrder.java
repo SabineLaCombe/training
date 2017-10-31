@@ -27,4 +27,8 @@ public class DrinkOrder {
     void isExtraHot() {
         this.extraHot = true;
     }
+
+    DrinkType getDrinkType() {
+        return drinkType;
+    }
 }

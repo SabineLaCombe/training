@@ -92,6 +92,8 @@ public class DrinkOrderTest {
         DrinkOrder drinkOrder = new DrinkOrder(DrinkType.COFFEE);
         drinkOrder.putMoney(0.6);
         drinkOrder.isExtraHot();
-        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_EXTRA_HOT_COFFEE);
+        DrinkOrganizer drinkOrganizer = new DrinkOrganizer();
+
+        assertThat(drinkOrganizer.sendCommand(drinkOrder)).isEqualTo(DRINK_MAKER_MAKES_1_EXTRA_HOT_COFFEE);
     }
 }

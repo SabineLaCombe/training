@@ -13,7 +13,7 @@ public class DrinkOrganizer {
     String sendCommand(DrinkOrder drinkOrder) {
         String drinkMakerMessage = drinkOrder.createMessageToDrinkMaker();
         if(!drinkMakerMessage.equals(OrderMessageTemplate.NOT_ENOUGH_MONEY))
-            drinkReport.countDrinkMade();
+            drinkReport.countDrinkMade(drinkOrder.getDrinkType());
         return drinkMakerMessage;
     }
 }
