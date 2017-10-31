@@ -24,7 +24,7 @@ public class DrinkOrder {
         this.paymentAmount = amount;
     }
 
-    public void isExtraHot(boolean extraHot) {
-        this.extraHot = extraHot;
+    void isExtraHot() {
+        this.extraHot = true;
     }
 }
