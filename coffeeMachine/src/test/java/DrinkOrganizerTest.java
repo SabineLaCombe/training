@@ -10,6 +10,8 @@ import repository.DrinkReporting;
 import repository.InMemoryDrinkReporting;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,11 +29,13 @@ public class DrinkOrganizerTest {
     @Mock
     private BeverageQuantityChecker beverageQuantityChecker;
 
+    @Mock
+    private EmailNotifier emailNotifier;
 
     @Before
     public void setUp() throws Exception {
         DrinkReporting drinkReporting = new InMemoryDrinkReporting();
-        drinkOrganizer = new DrinkOrganizer(drinkReporting, beverageQuantityChecker);
+        drinkOrganizer = new DrinkOrganizer(drinkReporting, beverageQuantityChecker, emailNotifier);
     }
 
     @Test
@@ -112,13 +116,22 @@ public class DrinkOrganizerTest {
     }
 
     @Test
-    public void should_report_shortage() throws Exception {
+    public void should_report_shortage() {
         DrinkOrder firstDrinkOrder = DrinkOrder.createBasicDrink(DrinkType.COFFEE, 0.6);
         when(beverageQuantityChecker.isEmpty(DrinkType.COFFEE)).thenReturn(true);
 
         String message = drinkOrganizer.sendCommand(firstDrinkOrder);
 
         assertThat(message).containsOnlyOnce(OrderMessageTemplate.SHORTAGE_MESSAGE);
+    }
 
+    @Test
+    public void should_report_email_has_been_sent_when_shortages_of_stock() {
+        DrinkOrder firstDrinkOrder = DrinkOrder.createBasicDrink(DrinkType.COFFEE, 0.6);
+        when(beverageQuantityChecker.isEmpty(DrinkType.COFFEE)).thenReturn(true);
+
+        String message = drinkOrganizer.sendCommand(firstDrinkOrder);
+
+        verify(emailNotifier, times(1)).notifyMissingDrink(DrinkType.COFFEE);
     }
 }

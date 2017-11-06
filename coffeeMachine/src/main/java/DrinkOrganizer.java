@@ -6,10 +6,12 @@ public class DrinkOrganizer {
 
     private DrinkReporting drinkReporting;
     private BeverageQuantityChecker beverageQuantityChecker;
+    private EmailNotifier emailNotifier;
 
-    DrinkOrganizer(DrinkReporting drinkReporting, BeverageQuantityChecker beverageQuantityChecker) {
+    DrinkOrganizer(DrinkReporting drinkReporting, BeverageQuantityChecker beverageQuantityChecker, EmailNotifier emailNotifier) {
         this.drinkReporting = drinkReporting;
         this.beverageQuantityChecker = beverageQuantityChecker;
+        this.emailNotifier = emailNotifier;
     }
 
     String getDrinkSoldReport() {
@@ -18,6 +20,7 @@ public class DrinkOrganizer {
 
     String sendCommand(DrinkOrder drinkOrder) {
         if (areStocksEmpty(drinkOrder)) {
+            emailNotifier.notifyMissingDrink(drinkOrder.getDrinkType());
             return OrderMessageTemplate.SHORTAGE_MESSAGE;
         }
         if (isThereSufficientMoney(drinkOrder)) {
