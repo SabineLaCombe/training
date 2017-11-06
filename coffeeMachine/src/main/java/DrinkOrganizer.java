@@ -5,9 +5,11 @@ import repository.DrinkReporting;
 public class DrinkOrganizer {
 
     private DrinkReporting drinkReporting;
+    private BeverageQuantityChecker beverageQuantityChecker;
 
-    DrinkOrganizer(DrinkReporting drinkReporting) {
+    DrinkOrganizer(DrinkReporting drinkReporting, BeverageQuantityChecker beverageQuantityChecker) {
         this.drinkReporting = drinkReporting;
+        this.beverageQuantityChecker = beverageQuantityChecker;
     }
 
     String getDrinkSoldReport() {
@@ -15,9 +17,21 @@ public class DrinkOrganizer {
     }
 
     String sendCommand(DrinkOrder drinkOrder) {
-        String drinkMakerMessage = drinkOrder.createMessageToDrinkMaker();
-        if(!drinkMakerMessage.equals(OrderMessageTemplate.NOT_ENOUGH_MONEY))
+        if (areStocksEmpty(drinkOrder)) {
+            return OrderMessageTemplate.SHORTAGE_MESSAGE;
+        }
+        if (isThereSufficientMoney(drinkOrder)) {
             drinkReporting.countDrinks(drinkOrder.getDrinkType());
-        return drinkMakerMessage;
+            return drinkOrder.createMessageToDrinkMaker();
+        }
+        return OrderMessageTemplate.NOT_ENOUGH_MONEY;
+    }
+
+    private boolean isThereSufficientMoney(DrinkOrder drinkOrder) {
+        return drinkOrder.isThereSufficientMoney();
+    }
+
+    private boolean areStocksEmpty(DrinkOrder drinkOrder) {
+        return beverageQuantityChecker.isEmpty(drinkOrder.getDrinkType());
     }
 }

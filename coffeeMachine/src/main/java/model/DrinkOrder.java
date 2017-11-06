@@ -27,10 +27,11 @@ public class DrinkOrder {
     }
 
     public String createMessageToDrinkMaker() {
-        if(paymentAmount < drinkType.getDrinkCost()) {
-            return OrderMessageTemplate.NOT_ENOUGH_MONEY;
-        }
         return OrderMessageTemplate.createMessageToDrinkMaker(drinkType, numberOfSugar, extraHot);
+    }
+
+    public boolean isThereSufficientMoney() {
+        return drinkType.isThereSufficientMoney(paymentAmount);
     }
 
     public DrinkType getDrinkType() {

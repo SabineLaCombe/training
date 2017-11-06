@@ -16,15 +16,15 @@ public enum DrinkType {
         return drinkLabel;
     }
 
-    public double getDrinkCost() {
-        return drinkCost;
-    }
-
     public boolean isHotDrink() {
         return this.equals(COFFEE) || this.equals(TEA) || this.equals(CHOCOLATE);
     }
 
-    public double calculateBenefice(int numberOfDrinkMade) {
+    public double calculateBeneficeByDrinkType(int numberOfDrinkMade) {
         return this.drinkCost*numberOfDrinkMade;
+    }
+
+    public boolean isThereSufficientMoney(double paymentAmount) {
+        return this.drinkCost <= paymentAmount;
     }
 }

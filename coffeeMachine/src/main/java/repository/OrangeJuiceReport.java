@@ -11,7 +11,7 @@ public class OrangeJuiceReport implements Report{
     }
 
     public double calculateBenefice() {
-        return DrinkType.ORANGE_JUICE.calculateBenefice(numberOfOrangeJuiceMade);
+        return DrinkType.ORANGE_JUICE.calculateBeneficeByDrinkType(numberOfOrangeJuiceMade);
     }
 
     public int getNumberOfOrangeJuiceMade() {

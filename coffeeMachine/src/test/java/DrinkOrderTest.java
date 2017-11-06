@@ -14,7 +14,6 @@ public class DrinkOrderTest {
     private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_1_SUGAR = "Drink maker makes 1 coffee with 1 sugar(s) and a stick";
     private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR = "Drink maker makes 1 coffee with 2 sugar(s) and a stick";
     private static final String DRINK_MAKER_MAKES_1_COFFEE_WITH_2_SUGAR_AND_A_STICK = "Drink maker makes 1 coffee with 2 sugar(s) and a stick";
-    private static final String NOT_ENOUGH_MONEY = "Not enough money";
     private static final String DRINK_MAKER_MAKES_1_EXTRA_HOT_COFFEE = "Drink maker makes 1 extra hot coffee with no sugar(s) and therefore no stick";
     private static final String DRINK_MAKER_MAKES_1_ORANGE_JUICE = "Drink maker makes 1 orange juice";
 
@@ -57,24 +56,6 @@ public class DrinkOrderTest {
     }
 
     @Test
-    public void should_not_sent_coffee_order_to_drink_maker_when_not_enough_money() {
-        DrinkOrder drinkOrder = DrinkOrder.createBasicDrink(DrinkType.COFFEE, 0.5);
-        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(NOT_ENOUGH_MONEY);
-    }
-
-    @Test
-    public void should_not_sent_tea_order_to_drink_maker_when_not_enough_money() {
-        DrinkOrder drinkOrder = DrinkOrder.createBasicDrink(DrinkType.TEA, 0.3);
-        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(NOT_ENOUGH_MONEY);
-    }
-
-    @Test
-    public void should_not_sent_chocolate_order_to_drink_maker_when_not_enough_money() {
-        DrinkOrder drinkOrder = DrinkOrder.createBasicDrink(DrinkType.CHOCOLATE, 0.4);
-        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(NOT_ENOUGH_MONEY);
-    }
-
-    @Test
     public void should_send_one_orange_juice_order_when_customer_order_orange_juice() {
         DrinkOrder drinkOrder = DrinkOrder.createBasicDrink(DrinkType.ORANGE_JUICE, 0.6);
         assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_ORANGE_JUICE);
@@ -83,9 +64,6 @@ public class DrinkOrderTest {
     @Test
     public void should_send_one_extra_hot_coffee_when_customer_order_extra_hot_coffee() {
         DrinkOrder drinkOrder = DrinkOrder.createExtraHotDrink(DrinkType.COFFEE, 0, 0.6);
-        DrinkReporting drinkReporting = new InMemoryDrinkReporting();
-        DrinkOrganizer drinkOrganizer = new DrinkOrganizer(drinkReporting);
-
-        assertThat(drinkOrganizer.sendCommand(drinkOrder)).isEqualTo(DRINK_MAKER_MAKES_1_EXTRA_HOT_COFFEE);
+        assertThat(drinkOrder.createMessageToDrinkMaker()).isEqualTo(DRINK_MAKER_MAKES_1_EXTRA_HOT_COFFEE);
     }
 }

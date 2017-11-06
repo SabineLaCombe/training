@@ -11,7 +11,7 @@ public class CoffeeReport implements Report {
     }
 
     public double calculateBenefice() {
-        return DrinkType.COFFEE.calculateBenefice(numberOfCoffeeMade);
+        return DrinkType.COFFEE.calculateBeneficeByDrinkType(numberOfCoffeeMade);
     }
 
     public int getNumberOfCoffeeMade() {

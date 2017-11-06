@@ -11,7 +11,7 @@ public class ChocolateReport implements Report{
     }
 
     public double calculateBenefice() {
-        return DrinkType.CHOCOLATE.calculateBenefice(numberOfChocolateMade);
+        return DrinkType.CHOCOLATE.calculateBeneficeByDrinkType(numberOfChocolateMade);
     }
 
     public int getNumberOfChocolateMade() {

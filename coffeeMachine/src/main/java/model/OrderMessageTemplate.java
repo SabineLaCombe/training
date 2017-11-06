@@ -14,6 +14,7 @@ public class OrderMessageTemplate {
     private static final String STRING_EMPTY = "";
 
     public static final String NOT_ENOUGH_MONEY = "Not enough money";
+    public static final String SHORTAGE_MESSAGE = "Sorry, the drink cannot be delivered because of shortages of water and/or milk";
 
 
     static String createMessageToDrinkMaker(DrinkType drinkType, int numberOfSugar, boolean extraHot) {

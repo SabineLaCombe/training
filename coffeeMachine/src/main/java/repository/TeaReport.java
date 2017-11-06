@@ -11,7 +11,7 @@ public class TeaReport implements Report {
     }
 
     public double calculateBenefice() {
-        return DrinkType.TEA.calculateBenefice(numberOfTeaMade);
+        return DrinkType.TEA.calculateBeneficeByDrinkType(numberOfTeaMade);
     }
 
     public int getNumberOfTeaMade() {
