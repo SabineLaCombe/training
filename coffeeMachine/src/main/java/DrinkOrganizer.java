@@ -1,23 +1,23 @@
 import model.DrinkOrder;
 import model.OrderMessageTemplate;
-import repository.DrinkReport;
+import repository.DrinkReporting;
 
 public class DrinkOrganizer {
 
-    private DrinkReport drinkReport;
+    private DrinkReporting drinkReporting;
 
-    DrinkOrganizer() {
-        drinkReport = new DrinkReport();
+    DrinkOrganizer(DrinkReporting drinkReporting) {
+        this.drinkReporting = drinkReporting;
     }
 
     String getDrinkSoldReport() {
-        return drinkReport.getDrinkSoldReport();
+        return drinkReporting.getDrinkSoldReport();
     }
 
     String sendCommand(DrinkOrder drinkOrder) {
         String drinkMakerMessage = drinkOrder.createMessageToDrinkMaker();
         if(!drinkMakerMessage.equals(OrderMessageTemplate.NOT_ENOUGH_MONEY))
-            drinkReport.countDrinks(drinkOrder.getDrinkType());
+            drinkReporting.countDrinks(drinkOrder.getDrinkType());
         return drinkMakerMessage;
     }
 }

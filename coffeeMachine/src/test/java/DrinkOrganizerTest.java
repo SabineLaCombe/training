@@ -1,18 +1,29 @@
 import model.DrinkOrder;
 import model.DrinkType;
+import org.junit.Before;
 import org.junit.Test;
+import repository.DrinkReporting;
+import repository.InMemoryDrinkReporting;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DrinkOrganizerTest {
 
-    public static final String ONE_DOLLAR_BENEFIT_IN_TOTAL = "1.0 benefice in total";
+    private static final String ONE_DOLLAR_BENEFIT_IN_TOTAL = "1.0 benefice in total";
     private static final String ONE_COFFEE_MADE_DURING_THE_DAY = "1 coffee made";
     private static final String ONE_TEA_MADE_DURING_THE_DAY = "1 tea made";
     private static final String ONE_CHOCOLATE_MADE_DURING_THE_DAY = "1 chocolate made";
     private static final String ONE_ORANGE_JUICE_MADE_DURING_THE_DAY = "1 orange juice made";
 
-    DrinkOrganizer drinkOrganizer = new DrinkOrganizer();
+    private DrinkOrganizer drinkOrganizer;
+    private DrinkReporting drinkReporting;
+
+
+    @Before
+    public void setUp() throws Exception {
+        drinkReporting = new InMemoryDrinkReporting();
+        drinkOrganizer = new DrinkOrganizer(drinkReporting);
+    }
 
     @Test
     public void should_report_one_coffee_made() {

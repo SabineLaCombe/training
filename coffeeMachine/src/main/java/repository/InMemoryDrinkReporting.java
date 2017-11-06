@@ -4,14 +4,16 @@ import model.DrinkType;
 
 import java.text.MessageFormat;
 
-public class DrinkReport {
+public class InMemoryDrinkReporting implements DrinkReporting {
+
+    private static final String REPORTING_TEMPLATE = "{0} coffee made\n {1} tea made\n {2} chocolate made\n {3} orange juice made\n {4} benefice in total\n";
 
     private final CoffeeReport coffeeReport;
     private final TeaReport teaReport;
     private final ChocolateReport chocolateReport;
     private final OrangeJuiceReport orangeJuiceReport;
 
-    public DrinkReport() {
+    public InMemoryDrinkReporting() {
         coffeeReport = new CoffeeReport();
         teaReport = new TeaReport();
         chocolateReport = new ChocolateReport();
@@ -36,8 +38,12 @@ public class DrinkReport {
     }
 
     public String getDrinkSoldReport() {
-        return MessageFormat.format("{0} coffee made\n {1} tea made\n {2} chocolate made\n {3} orange juice made\n {4} benefice in total\n",
-            coffeeReport.numberOfCoffeeMade, teaReport.numberOfTeaMade, chocolateReport.numberOfChocolateMade, orangeJuiceReport.numberOfOrangeJuiceMade, calculateBenefice());
+        return MessageFormat.format(REPORTING_TEMPLATE,
+            coffeeReport.getNumberOfCoffeeMade(),
+            teaReport.getNumberOfTeaMade(),
+            chocolateReport.getNumberOfChocolateMade(),
+            orangeJuiceReport.getNumberOfOrangeJuiceMade(),
+            calculateBenefice());
     }
 
     private String calculateBenefice() {

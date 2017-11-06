@@ -4,7 +4,7 @@ import model.DrinkType;
 
 public class OrangeJuiceReport implements Report{
 
-    int numberOfOrangeJuiceMade;
+    private int numberOfOrangeJuiceMade;
 
     public void count() {
         numberOfOrangeJuiceMade++;
@@ -12,5 +12,9 @@ public class OrangeJuiceReport implements Report{
 
     public double calculateBenefice() {
         return DrinkType.ORANGE_JUICE.calculateBenefice(numberOfOrangeJuiceMade);
+    }
+
+    public int getNumberOfOrangeJuiceMade() {
+        return numberOfOrangeJuiceMade;
     }
 }

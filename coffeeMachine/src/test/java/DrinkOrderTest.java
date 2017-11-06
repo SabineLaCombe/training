@@ -1,6 +1,8 @@
 import model.DrinkOrder;
 import model.DrinkType;
 import org.junit.Test;
+import repository.DrinkReporting;
+import repository.InMemoryDrinkReporting;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -81,7 +83,8 @@ public class DrinkOrderTest {
     @Test
     public void should_send_one_extra_hot_coffee_when_customer_order_extra_hot_coffee() {
         DrinkOrder drinkOrder = DrinkOrder.createExtraHotDrink(DrinkType.COFFEE, 0, 0.6);
-        DrinkOrganizer drinkOrganizer = new DrinkOrganizer();
+        DrinkReporting drinkReporting = new InMemoryDrinkReporting();
+        DrinkOrganizer drinkOrganizer = new DrinkOrganizer(drinkReporting);
 
         assertThat(drinkOrganizer.sendCommand(drinkOrder)).isEqualTo(DRINK_MAKER_MAKES_1_EXTRA_HOT_COFFEE);
     }

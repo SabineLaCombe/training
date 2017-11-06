@@ -4,7 +4,7 @@ import model.DrinkType;
 
 public class CoffeeReport implements Report {
 
-    int numberOfCoffeeMade;
+    private int numberOfCoffeeMade;
 
     public void count() {
         numberOfCoffeeMade++;
@@ -12,5 +12,9 @@ public class CoffeeReport implements Report {
 
     public double calculateBenefice() {
         return DrinkType.COFFEE.calculateBenefice(numberOfCoffeeMade);
+    }
+
+    public int getNumberOfCoffeeMade() {
+        return numberOfCoffeeMade;
     }
 }
