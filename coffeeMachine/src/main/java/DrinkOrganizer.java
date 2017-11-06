@@ -1,4 +1,5 @@
 import model.DrinkOrder;
+import model.DrinkType;
 import model.OrderMessageTemplate;
 import repository.DrinkReporting;
 
@@ -20,18 +21,26 @@ public class DrinkOrganizer {
 
     String sendCommand(DrinkOrder drinkOrder) {
         if (areStocksEmpty(drinkOrder)) {
-            emailNotifier.notifyMissingDrink(drinkOrder.getDrinkType());
-            return OrderMessageTemplate.SHORTAGE_MESSAGE;
+            return sendMailAndCreateMessageWhenStockEmpty(drinkOrder.getDrinkType());
         }
-        if (isThereSufficientMoney(drinkOrder)) {
-            drinkReporting.countDrinks(drinkOrder.getDrinkType());
-            return drinkOrder.createMessageToDrinkMaker();
+        if (isMoneyNotSufficient(drinkOrder)) {
+            return OrderMessageTemplate.NOT_ENOUGH_MONEY;
         }
-        return OrderMessageTemplate.NOT_ENOUGH_MONEY;
+        return sendCommandToDrinkMaker(drinkOrder);
     }
 
-    private boolean isThereSufficientMoney(DrinkOrder drinkOrder) {
-        return drinkOrder.isThereSufficientMoney();
+    private String sendCommandToDrinkMaker(DrinkOrder drinkOrder) {
+        drinkReporting.countDrinks(drinkOrder.getDrinkType());
+        return drinkOrder.createMessageToDrinkMaker();
+    }
+
+    private String sendMailAndCreateMessageWhenStockEmpty(DrinkType drinkType) {
+        emailNotifier.notifyMissingDrink(drinkType);
+        return OrderMessageTemplate.SHORTAGE_MESSAGE;
+    }
+
+    private boolean isMoneyNotSufficient(DrinkOrder drinkOrder) {
+        return !drinkOrder.isThereSufficientMoney();
     }
 
     private boolean areStocksEmpty(DrinkOrder drinkOrder) {
