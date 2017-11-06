@@ -1,3 +1,4 @@
+package model;
 
 public enum DrinkType {
 
@@ -21,5 +22,9 @@ public enum DrinkType {
 
     public boolean isHotDrink() {
         return this.equals(COFFEE) || this.equals(TEA) || this.equals(CHOCOLATE);
+    }
+
+    public double calculateBenefice(int numberOfDrinkMade) {
+        return this.drinkCost*numberOfDrinkMade;
     }
 }

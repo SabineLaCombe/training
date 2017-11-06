@@ -1,3 +1,5 @@
+package model;
+
 import java.text.MessageFormat;
 
 public class OrderMessageTemplate {
@@ -11,7 +13,7 @@ public class OrderMessageTemplate {
     private static final String EXTRA_HOT = "extra hot ";
     private static final String STRING_EMPTY = "";
 
-    static final String NOT_ENOUGH_MONEY = "Not enough money";
+    public static final String NOT_ENOUGH_MONEY = "Not enough money";
 
 
     static String createMessageToDrinkMaker(DrinkType drinkType, int numberOfSugar, boolean extraHot) {
